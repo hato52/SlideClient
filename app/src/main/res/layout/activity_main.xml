@@ -11,8 +11,9 @@
         android:id="@+id/send_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="167dp"
         android:text="SEND" />
 
     <Button
@@ -20,8 +21,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/send_button"
-        android:layout_alignEnd="@+id/send_button"
-        android:layout_alignRight="@+id/send_button"
-        android:layout_marginBottom="39dp"
+        android:layout_alignLeft="@+id/send_button"
+        android:layout_alignStart="@+id/send_button"
+        android:layout_marginBottom="87dp"
         android:text="connect" />
 </RelativeLayout>
