@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SlideClient.iml" filepath="$PROJECT_DIR$/SlideClient.iml" />
-      <module fileurl="file://C:\Users\Souta\AndroidStudioProjects\SlideClient\SlideClient.iml" filepath="C:\Users\Souta\AndroidStudioProjects\SlideClient\SlideClient.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Souta\AndroidStudioProjects\SlideClient\app\app.iml" filepath="C:\Users\Souta\AndroidStudioProjects\SlideClient\app\app.iml" />
     </modules>
   </component>
 </project>
