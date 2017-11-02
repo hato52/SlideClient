@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context="com.example.user.slideclient.MainActivity">
-
 
     <Button
         android:id="@+id/send_button"
@@ -25,4 +25,21 @@
         android:layout_alignStart="@+id/send_button"
         android:layout_marginBottom="87dp"
         android:text="connect" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:text="Select MAC address" />
+
+    <TextView
+        android:id="@+id/select_mac_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:text="none" />
 </RelativeLayout>

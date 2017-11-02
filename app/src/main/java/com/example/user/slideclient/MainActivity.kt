@@ -16,6 +16,7 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
 
     private val REQUEST_ENABLE_BT = 1
+    private var MAC_ADDRESS = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         if (myBluetoothAdapter == null) {
             Toast.makeText(this, "この端末では使えないよ(´・ω・`)", Toast.LENGTH_SHORT).show()
         }
+
         //有効でなければインテントを発行する
         if (!myBluetoothAdapter.isEnabled()) {
             intent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
@@ -40,6 +42,13 @@ class MainActivity : AppCompatActivity() {
             if (pairedDevices.size > 0) {
                 showPairedDevicesList(pairedDevices)
             }
+        }
+
+        //サーバ端末へデータを送信
+        val send_button: Button = findViewById<Button>(R.id.send_button) as Button
+        send_button.setOnClickListener{ view ->
+            //CommunicationThread(socket).write(data)
+            Toast.makeText(this, "send data", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -69,6 +78,12 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle("端末を選択")
         builder.setView(listView)
         builder.setNegativeButton("閉じる", null)
-        builder.show()
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+
+        listView.setOnItemClickListener{parent,view, position, id ->
+            MAC_ADDRESS = position
+            dialog.dismiss()
+        }
     }
 }
