@@ -33,10 +33,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp"
-        android:text="Select MAC address" />
+        android:text="Select Server" />
 
     <TextView
-        android:id="@+id/select_mac_address"
+        android:id="@+id/select_server"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView"
