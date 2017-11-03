@@ -8,33 +8,31 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
     private val REQUEST_ENABLE_BT = 1
-    private var MAC_ADDRESS = -1
+
+    var serverNameText: TextView = findViewById<TextView>(R.id.select_server)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //アプリ起動時にBluetooth有効かをチェック
+        /**アプリ起動時にBluetooth有効かをチェック*/
         val myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if (myBluetoothAdapter == null) {
             Toast.makeText(this, "この端末では使えないよ(´・ω・`)", Toast.LENGTH_SHORT).show()
         }
 
-        //有効でなければインテントを発行する
+        /**有効でなければインテントを発行する*/
         if (!myBluetoothAdapter.isEnabled()) {
             intent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivityForResult(intent, REQUEST_ENABLE_BT)
         }
 
-        //ペアリング設定済みの端末をダイアログで表示
+        /**ペアリング設定済みの端末をダイアログで表示*/
         val connect_button: Button = findViewById<Button>(R.id.connect_button) as Button
         connect_button.setOnClickListener{ view ->
             val pairedDevices: Set<BluetoothDevice> = myBluetoothAdapter.bondedDevices
@@ -44,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //サーバ端末へデータを送信
+        /**サーバ端末へデータを送信*/
         val send_button: Button = findViewById<Button>(R.id.send_button) as Button
         send_button.setOnClickListener{ view ->
             //CommunicationThread(socket).write(data)
@@ -61,19 +59,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showPairedDevicesList(pairedDevices: Set<BluetoothDevice>) {
-        //mutable <-> 変更可能な
-        //MutableListでなくListを使うと変更可能ではないため、addメソッドが使えない
+        /**mutable <-> 変更可能な
+         MutableListでなくListを使うと変更可能ではないため、addメソッドが使えない*/
         val deviceName: MutableList<String> = mutableListOf()
         for (device in pairedDevices) {
             deviceName.add(device.name)
         }
 
-        //リストビューのアダプタを作成
+        /**リストビューのアダプタを作成*/
         val listView = ListView(this)
         val arrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, deviceName)
         listView.setAdapter(arrayAdapter)
 
-        //ダイアログを表示
+        /**ダイアログを表示*/
         val builder = AlertDialog.Builder(this)
         builder.setTitle("端末を選択")
         builder.setView(listView)
@@ -82,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
 
         listView.setOnItemClickListener{parent,view, position, id ->
-            MAC_ADDRESS = position
+            serverNameText.text = deviceName[position]
             dialog.dismiss()
         }
     }
